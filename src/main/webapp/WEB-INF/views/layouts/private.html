@@ -101,9 +101,11 @@
 
 
             <a href="${base!}/private/home"  data-pjax class="navbar-brand">
-                <img src="${base!}/assets/img/logo.png" alt="" class="o_img <% if(!@shiro.getPrincipalProperty('loginSidebar')){ %>o_hide<% } %>">
-                <span class="heading-font o_img <% if(@shiro.getPrincipalProperty('loginSidebar')){ %>o_hide<% } %>">
-		            <img src="${base!}/assets/img/logoa.png">
+                <img  src="${base!}/assets/img/logo.png" class="o_img <% if(!@shiro.getPrincipalProperty('loginSidebar')){ %>o_hide<% } %>">
+
+                <span  style="font-size:20px;float: none" class="heading-font o_img <% if(@shiro.getPrincipalProperty('loginSidebar')){ %>o_hide<% } %>">
+                    库管系统
+                    <!--<img src="${base!}/assets/img/logoa.png">-->
                 </span>
             </a>
 

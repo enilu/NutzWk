@@ -31,6 +31,8 @@ public class Setup implements org.nutz.mvc.Setup {
         try {
             Ioc ioc = config.getIoc();
             Dao dao = ioc.get(Dao.class);
+            //启动h2dbserver
+            H2Server.startH2Server();
             // 初始化数据表
             initSysData(config, dao);
             // 获取NutQuartzCronJobFactory从而触发计划任务的初始化与启动
@@ -519,5 +521,6 @@ public class Setup implements org.nutz.mvc.Setup {
     }
 
     public void destroy(NutConfig config) {
+        H2Server.stopH2Server();
     }
 }

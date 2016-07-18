@@ -57,6 +57,7 @@ public class Sys_user extends Model implements Serializable {
 
     @Column
     @Comment("登陆时间")
+    @ColDefine(width = 11)
     protected Integer loginAt;
 
     @Column
