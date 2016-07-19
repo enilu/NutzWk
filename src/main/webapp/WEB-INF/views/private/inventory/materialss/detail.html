@@ -1,0 +1,56 @@
+<%
+layout("/layouts/private.html"){
+%>
+<section class="content-wrap bg-white">
+    <header class="header navbar bg-white shadow">
+        <div class="btn-group tool-button">
+            <a class="btn btn-primary navbar-btn" href="${base}/private/inventory/materialss" id="goback" data-pjax><i class="ti-angle-left"></i> 返回</a>
+            <a class="btn btn-info navbar-btn" href="${base}/private/inventory/materialss/edit/${obj.id}"  id="edit" data-pjax> 修改</a>
+        </div>
+    </header>
+
+    <div class=panel-body style="padding-top: 56px;">
+        <div class="table-responsive no-border">
+            <input id="unitid" type="hidden">
+            <table class="table table-bordered table-striped mg-t datatable">
+                <tbody>
+                <tr>
+                    <td>编码</td><td>${obj.code}</td>
+                </tr>
+                <tr>
+                    <td>名称</td><td>${obj.name}</td>
+                </tr>
+                <tr>
+                    <td>入库时间</td><td>${obj.indate}</td>
+                </tr>
+                <tr>
+                    <td>出库时间</td><td>${obj.outdate}</td>
+                </tr>
+                <tr>
+                    <td>状态</td><td>${obj.materialstatus}</td>
+                </tr>
+                <tr>
+                    <td>国家</td><td>${obj.country}</td>
+                </tr>
+                <tr>
+                    <td>生产车间</td><td>${obj.workshop}</td>
+                </tr>
+                <tr>
+                    <td>产品列别</td><td>${obj.producttype}</td>
+                </tr>
+                <tr>
+                    <td>入库日期</td><td>${obj.indatestr}</td>
+                </tr>
+                <tr>
+                    <td>生产人员</td><td>${obj.worker}</td>
+                </tr>
+                <tr>
+                    <td>仓位</td><td>${obj.warehouse}</td>
+                </tr>
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</section>
+<%}%>

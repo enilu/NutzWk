@@ -1,0 +1,136 @@
+<%
+layout("/layouts/private.html"){
+%>
+<header class="header navbar bg-white shadow">
+    <div class="btn-group tool-button">
+        <a class="btn btn-primary navbar-btn" href="${base}/private/inventory/materialss" id="goback" data-pjax><i class="ti-angle-left"></i> 返回</a>
+    </div>
+</header>
+
+<div class="content-wrap">
+    <div class="wrapper" style="min-height:500px;">
+        <section class="panel panel-form">
+            <form id="editForm" role="form" class="form-horizontal parsley-form" data-parsley-validate
+                  action="${base}/private/inventory/materialss/editDo" method="post">
+                <input name="id" type="hidden" value="${obj.id}">
+                <div class="row mb10">
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label for="code" class="col-sm-2 control-label">编码</label>
+                            <div class="col-sm-8">
+                                <input type="text" id="code" class="form-control" name="code" data-parsley-required="true"
+                                       placeholder="编码" value="${obj.code}" >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="name" class="col-sm-2 control-label">名称</label>
+                            <div class="col-sm-8">
+                                <input type="text" id="name" class="form-control" name="name" data-parsley-required="true"
+                                       placeholder="名称" value="${obj.name}" >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="indate" class="col-sm-2 control-label">入库时间</label>
+                            <div class="col-sm-8">
+                                <input type="text" id="indate" class="form-control" name="indate" data-parsley-required="true"
+                                       placeholder="入库时间" value="${obj.indate}" >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="outdate" class="col-sm-2 control-label">出库时间</label>
+                            <div class="col-sm-8">
+                                <input type="text" id="outdate" class="form-control" name="outdate" data-parsley-required="true"
+                                       placeholder="出库时间" value="${obj.outdate}" >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="materialstatus" class="col-sm-2 control-label">状态</label>
+                            <div class="col-sm-8">
+                                <input type="text" id="materialstatus" class="form-control" name="materialstatus" data-parsley-required="true"
+                                       placeholder="状态" value="${obj.materialstatus}" >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="country" class="col-sm-2 control-label">国家</label>
+                            <div class="col-sm-8">
+                                <input type="text" id="country" class="form-control" name="country" data-parsley-required="true"
+                                       placeholder="国家" value="${obj.country}" >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="workshop" class="col-sm-2 control-label">生产车间</label>
+                            <div class="col-sm-8">
+                                <input type="text" id="workshop" class="form-control" name="workshop" data-parsley-required="true"
+                                       placeholder="生产车间" value="${obj.workshop}" >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="producttype" class="col-sm-2 control-label">产品列别</label>
+                            <div class="col-sm-8">
+                                <input type="text" id="producttype" class="form-control" name="producttype" data-parsley-required="true"
+                                       placeholder="产品列别" value="${obj.producttype}" >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="indatestr" class="col-sm-2 control-label">入库日期</label>
+                            <div class="col-sm-8">
+                                <input type="text" id="indatestr" class="form-control" name="indatestr" data-parsley-required="true"
+                                       placeholder="入库日期" value="${obj.indatestr}" >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="worker" class="col-sm-2 control-label">生产人员</label>
+                            <div class="col-sm-8">
+                                <input type="text" id="worker" class="form-control" name="worker" data-parsley-required="true"
+                                       placeholder="生产人员" value="${obj.worker}" >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="warehouse" class="col-sm-2 control-label">仓位</label>
+                            <div class="col-sm-8">
+                                <input type="text" id="warehouse" class="form-control" name="warehouse" data-parsley-required="true"
+                                       placeholder="仓位" value="${obj.warehouse}" >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3"></div>
+                <div class="col-lg-6">
+                    <div class="form-group text-center">
+                        <label></label>
+
+                        <div>
+                            <button class="btn btn-primary btn-block btn-lg btn-parsley" data-loading-text="正在提交...">提 交</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </section>
+
+    </div>
+</div>
+<script language="JavaScript">
+    $(document).ready(function () {
+        $('#editForm').ajaxForm({
+            dataType: 'json',
+            beforeSubmit: function (arr, form, options) {
+                form.find("button:submit").button("loading");
+            },
+            success: function (data, statusText, xhr, form) {
+                if (data.code == 0) {
+                    Toast.success(data.msg);
+                    //刷新父级菜单
+                    setTimeout(function () {
+                        $("#goback").trigger("click");
+                    }, 1000);
+                } else {
+                    Toast.error(data.msg);
+                }
+                form.find("button:submit").button("reset");
+            }
+        });
+    });
+</script>
+
+
+<%}%>
